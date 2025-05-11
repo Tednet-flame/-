@@ -4,7 +4,7 @@
 *Платформа:* draw.io  
 
 ---
-[![← Вернуться к документации](https://img.shields.io/badge/←_Вернуться_к_README-документации-8A2BE2)](https://github.com/Tednet-flame/-)
+
 
 ## ЗАДАНИЕ 1  
 **Дано:**  
