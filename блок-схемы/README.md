@@ -84,4 +84,4 @@
 
 ## ЗАДАНИЕ 7  
 **Блок-схема:**  
-[Ссылка на блок-схему](https://github.com/FallCracka/chalenge/blob/main/блок-схемы/задание%207.png)  
+[Ссылка на блок-схему](https://github.com/Tednet-flame/-/blob/main/%D0%B1%D0%BB%D0%BE%D0%BA-%D1%81%D1%85%D0%B5%D0%BC%D1%8B/%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%207.png)  
