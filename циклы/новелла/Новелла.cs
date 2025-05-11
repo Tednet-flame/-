@@ -1,178 +1,189 @@
 using System;
+using System.Collections.Generic;
 
-namespace AnimeMontagerAdventure
+namespace AnimeElectricianAdventure
 {
     class Program
     {
-        // Характеристики персонажа
-        class Hero
+        // Обновленный класс главного героя
+        class ElectricianWeeb
         {
-            public string Name { get; } = "Сатоши";
-            public int Screws { get; set; } = 10; // Крепежные элементы
-            public int AnimePower { get; set; } = 3; // Уровень аниме-силы
-            public bool HasToolbelt { get; set; } = true;
-            public bool KnowsSecretTechnique { get; set; } = false;
+            public string Name { get; } = "Кайто";
+            public int Wires { get; set; } = 15;         // Медные жилы
+            public int AnimePower { get; set; } = 5;     // Уровень отаку
+            public List<string> AnimeQuotes { get; } = new List<string>() 
+            {
+                "Электро - это жизнь!",
+                "Банкай: Молниевый монтажник!",
+                "Неспроста я пересмотрел все сезоны Toaru!"
+            };
+            public bool HasVoltageGloves { get; set; } = true;
         }
 
-        static Hero player = new Hero();
+        static ElectricianWeeb player = new ElectricianWeeb();
         static Random rnd = new Random();
 
         static void Main()
         {
-            Console.Title = "Аниме-приключения монтажника";
-            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.Title = "Электромонтажер-анимешник: Пробой реальности";
+            Console.ForegroundColor = ConsoleColor.Cyan;
             
-            ShowIntro();
-            FirstDayAtWork();
+            ShowElectricIntro();
+            PowerStationEvent();
         }
 
-        static void ShowIntro()
+        static void ShowElectricIntro()
         {
             Console.Clear();
-            Console.WriteLine("≪≪≪≪≪≪≪≪≪≪≪≪≪≪≪≪≪≪≪≪≪≪≪≪≪≪≪≪≪≪≪≪≪≪≪");
-            Console.WriteLine("  あなたの新しい冒険が始まります！");
-            Console.WriteLine("≫≫≫≫≫≫≫≫≫≫≫≫≫≫≫≫≫≫≫≫≫≫≫≫≫≫≫≫≫≫≫≫≫≫≫\n");
+            Console.WriteLine("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+            Console.WriteLine("  電撃の冒険が始まる！ (Начинается электроприключение!)");
+            Console.WriteLine("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆\n");
             
-            Console.WriteLine($"Вы - {player.Name}, монтажник 4 разряда и фанат аниме.");
-            Console.WriteLine("Сегодня обычный рабочий день, но...\n");
+            Console.WriteLine($"Вы - {player.Name}, электромонтажник 5 разряда и хардкорный отаку.");
+            Console.WriteLine("Во время аварии на подстанции вы получили странные способности...\n");
             
             Console.WriteLine("Нажмите любую клавишу...");
             Console.ReadKey();
         }
 
-        static void FirstDayAtWork()
+        static void PowerStationEvent()
         {
             Console.Clear();
-            Console.WriteLine("＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝");
-            Console.WriteLine("  7:30 УТРА. СТРОЙПЛОЩАДКА 'NEO-TOKYO'");
-            Console.WriteLine("＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝\n");
+            Console.WriteLine("▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂");
+            Console.WriteLine("  ПОДСТАНЦИЯ №7. АВАРИЙНАЯ СИТУАЦИЯ");
+            Console.WriteLine("▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂\n");
             
-            Console.WriteLine("Бригадир Иванов кричит:");
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\"Сатоши! Срочно чини вентиляцию на 25 этаже!\"\n");
-            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("Вы видите:");
+            Console.WriteLine("- Искрящийся трансформатор");
+            Console.WriteLine("- Странные руны на электрощите");
+            Console.WriteLine("- Своё отражение с аниме-глазами\n");
             
-            Console.WriteLine("1. Взять инструменты и выполнить задание");
-            Console.WriteLine("2. Устроить перерыв с просмотром аниме");
-            Console.WriteLine("3. Применить 'Технику Наруто' для ускорения");
-            Console.WriteLine("4. Сказать, что это не ваша работа");
+            Console.WriteLine("1. Попытаться починить стандартным методом (-3 жилы)");
+            Console.WriteLine("2. Произнести аниме-цитату (шанс 50/50)");
+            Console.WriteLine("3. Прикоснуться к рунам голыми руками");
+            Console.WriteLine("4. Сбежать с криком 'Yamete kudasai!'");
 
             switch (GetChoice(1, 4))
             {
                 case 1:
-                    FixVentilation();
+                    StandardRepair();
                     break;
                 case 2:
-                    AnimeBreak();
+                    AnimeQuoteAttempt();
                     break;
                 case 3:
-                    TryNarutoTechnique();
+                    TouchRunes();
                     break;
                 case 4:
-                    RefuseWork();
+                    EscapeEnding();
                     break;
             }
         }
 
-        static void FixVentilation()
+        static void StandardRepair()
+        {
+            player.Wires -= 3;
+            Console.WriteLine("\nВы починили оборудование, но...");
+            Console.WriteLine("Обычные методы больше не работают как раньше!");
+            
+            if (player.Wires <= 0)
+            {
+                Console.WriteLine("\nУ вас закончились материалы!");
+                GameOver();
+                return;
+            }
+
+            Console.WriteLine("\n1. Идти в аниме-магазин за артефактами");
+            Console.WriteLine("2. Проверить другие подстанции");
+
+            if (GetChoice(1, 2) == 1)
+                VisitOtakuShop();
+            else
+                CheckOtherStations();
+        }
+
+        static void VisitOtakuShop()
         {
             Console.Clear();
-            Console.WriteLine("・・・・・・・・・・・・・・・・・・・・・・・・・");
-            Console.WriteLine("  25 ЭТАЖ. ВЕНТИЛЯЦИОННАЯ ШАХТА");
-            Console.WriteLine("・・・・・・・・・・・・・・・・・・・・・・・・・\n");
+            Console.WriteLine("✧･ﾟ: *✧･ﾟ:*  АНИМЕ-МАГАЗИН 'OTAKU FLOW' *:･ﾟ✧*:･ﾟ✧");
+            Console.WriteLine("На полках:\n");
             
-            Console.WriteLine("Вы обнаруживаете:");
-            Console.WriteLine("- Сломанный вентилятор");
-            Console.WriteLine("- Странные аниме-рисунки на стенах");
-            Console.WriteLine("- Звуки битвы из соседнего помещения\n");
+            Console.WriteLine("1. Изолента с рунами (+5 к силе, стоит 3 жилы)");
+            Console.WriteLine("2. Фигурка Мисаки из 'Toaru' (+2 AnimePower)");
+            Console.WriteLine("3. Манга 'Электромагия для чайников'");
+            Console.WriteLine("4. Уйти без покупок");
+
+            int choice = GetChoice(1, 4);
+
+            switch (choice)
+            {
+                case 1 when player.Wires >= 3:
+                    player.Wires -= 3;
+                    player.AnimePower += 5;
+                    Console.WriteLine("\nТеперь вы чувствуете магию в проводах!");
+                    break;
+                case 2:
+                    player.AnimePower += 2;
+                    Console.WriteLine("\nФигурка излучает странную энергию...");
+                    break;
+                case 3:
+                    Console.WriteLine("\nВы узнали секрет: Ctrl+Alt+Рем-тян!");
+                    player.AnimeQuotes.Add("Я прочитал мангу до конца!");
+                    break;
+            }
+
+            UniversityRooftopEvent();
+        }
+
+        static void UniversityRooftopEvent()
+        {
+            Console.Clear();
+            Console.WriteLine("☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁");
+            Console.WriteLine("  КРЫША ТОКИЙСКОГО УНИВЕРСИТЕТА");
+            Console.WriteLine("☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁\n");
             
-            Console.WriteLine("1. Починить стандартным способом (-5 болтов)");
-            Console.WriteLine("2. Попробовать 'Технику Удзумаки'");
-            Console.WriteLine("3. Исследовать источник звуков");
+            Console.WriteLine("Перед финальным выбором:");
+            Console.WriteLine("- Город без электричества");
+            Console.WriteLine("- Порталы в другие миры");
+            Console.WriteLine("- Ваши новые способности\n");
+            
+            Console.WriteLine("1. Восстановить энергосистему (требует 10 Wires)");
+            Console.WriteLine($"2. Использовать Bankai Mode (требует 15 AnimePower)");
+            Console.WriteLine("3. Найти девушку-киборга из видений");
 
             int choice = GetChoice(1, 3);
 
-            if (choice == 1)
+            if (choice == 1 && player.Wires >= 10)
             {
-                player.Screws -= 5;
-                Console.WriteLine("\nВы успешно починили вентиляцию!");
-                Console.WriteLine("Но бригадир недоволен расходом материалов...");
-                NormalEnding();
+                player.Wires -= 10;
+                LegendaryElectricianEnding();
             }
-            else if (choice == 2)
+            else if (choice == 2 && player.AnimePower >= 15)
             {
-                if (player.AnimePower > 4)
-                {
-                    Console.WriteLine("\n☆★☆ УРА! Вентилятор починен с помощью Чакры! ☆★☆");
-                    Console.WriteLine("Но теперь все хотят узнать ваш секрет...");
-                    SecretTechniqueEnding();
-                }
-                else
-                {
-                    Console.WriteLine("\nНедостаточно аниме-силы! Вентилятор взорвался!");
-                    GameOver();
-                }
+                TrueOtakuEnding();
             }
             else
             {
-                Console.WriteLine("\nВы находите потайную дверь...");
-                AnimeWorldPortal();
+                Console.WriteLine("\nНе хватает ресурсов! Но...");
+                CyberGhostEnding();
             }
         }
 
-        static void AnimeWorldPortal()
+        static void LegendaryElectricianEnding()
         {
             Console.Clear();
-            Console.WriteLine("☆*:.｡.o(≧▽≦)o.｡.:*☆*:.｡.o(≧▽≦)o.｡.:*☆");
-            Console.WriteLine("  ВЫ ПОПАЛИ В МИР АНИМЕ!");
-            Console.WriteLine("☆*:.｡.o(≧▽≦)o.｡.:*☆*:.｡.o(≧▽≦)o.｡.:*☆\n");
-            
-            Console.WriteLine("Перед вами:");
-            Console.WriteLine("- Гиперболоидный болт от Гандама");
-            Console.WriteLine("- Манга-инструкция по ремонту");
-            Console.WriteLine("- Девушка-киборг, просящая помощи\n");
-            
-            Console.WriteLine("1. Взять болт для коллекции");
-            Console.WriteLine("2. Изучить мангу");
-            Console.WriteLine("3. Помочь киборгу");
-
-            int choice = GetChoice(1, 3);
-
-            if (choice == 1)
-            {
-                Console.WriteLine("\nБолт оказался ключом к межпространственному порталу!");
-                Console.WriteLine("Теперь вы можете путешествовать между мирами!");
-                TrueAnimeEnding();
-            }
-            else if (choice == 2)
-            {
-                player.KnowsSecretTechnique = true;
-                Console.WriteLine("\nВы изучили 'Технику Монтажа Ками'!");
-                Console.WriteLine("Теперь можете чинить что угодно без инструментов!");
-                SecretTechniqueEnding();
-            }
-            else
-            {
-                Console.WriteLine("\nВы починили девушке-киборгу руку...");
-                Console.WriteLine("Оказалось, она дочь президента корпорации!");
-                RomanceEnding();
-            }
-        }
-
-        static void TrueAnimeEnding()
-        {
-            Console.Clear();
-            Console.WriteLine("∧,,,∧\n( ̳• · • ̳)\n/    づ♡ КОНЦОВКА");
-            Console.WriteLine("Вы стали мостом между мирами!");
-            Console.WriteLine("Совмещаете монтаж и аниме-приключения!");
+            Console.WriteLine("≪✦≫≪✦≫≪✦≫ ЛЕГЕНДАРНЫЙ ЭЛЕКТРИК ≪✦≫≪✦≫≪✦≫");
+            Console.WriteLine("Вы стабилизировали энергосистему города!");
+            Console.WriteLine("Теперь вас называют 'Богом проводов'");
             ExitGame();
         }
 
-        static void GameOver()
+        static void TrueOtakuEnding()
         {
             Console.Clear();
-            Console.WriteLine("(×_×) GAME OVER");
-            Console.WriteLine("Вас уволили за порчу имущества...");
+            Console.WriteLine("(◕‿◕✿) ИСТИННЫЙ ОТАКУ (◕‿◕✿)");
+            Console.WriteLine("Bankai Mode активирован! Портал открыт!");
+            Console.WriteLine("Вы перенеслись в мир аниме навсегда!");
             ExitGame();
         }
 
@@ -180,7 +191,7 @@ namespace AnimeMontagerAdventure
         {
             while (true)
             {
-                Console.Write("\nВыбор: ");
+                Console.Write($"\n[{player.Wires}🔌|{player.AnimePower}💬] Выбор: ");
                 if (int.TryParse(Console.ReadLine(), out int choice) && choice >= min && choice <= max)
                 {
                     return choice;
@@ -189,6 +200,6 @@ namespace AnimeMontagerAdventure
             }
         }
 
-        // Другие методы сюжета...
+        // Другие методы концовок...
     }
 }
