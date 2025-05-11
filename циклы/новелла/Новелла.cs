@@ -1,67 +1,67 @@
 using System;
 using System.Collections.Generic;
 
-namespace AnimeElectricianAdventure
+namespace AnimeElectricianNovel
 {
     class Program
     {
-        // Обновленный класс главного героя
-        class ElectricianWeeb
+        // Класс главного героя
+        class Protagonist
         {
-            public string Name { get; } = "Кайто";
-            public int Wires { get; set; } = 15;         // Медные жилы
-            public int AnimePower { get; set; } = 5;     // Уровень отаку
-            public List<string> AnimeQuotes { get; } = new List<string>() 
+            public string Name { get; } = "Каито Ито";
+            public int Wires { get; set; } = 15;
+            public int AnimePower { get; set; } = 5;
+            public List<string> KnownQuotes { get; } = new List<string>()
             {
-                "Электро - это жизнь!",
+                "Электричество - это жизнь!",
                 "Банкай: Молниевый монтажник!",
-                "Неспроста я пересмотрел все сезоны Toaru!"
+                "Я видел это в аниме!"
             };
-            public bool HasVoltageGloves { get; set; } = true;
+            public bool HasSpecialGloves { get; set; } = true;
+            public int Reputation { get; set; } = 0;
         }
 
-        static ElectricianWeeb player = new ElectricianWeeb();
-        static Random rnd = new Random();
+        static Protagonist hero = new Protagonist();
+        static Random random = new Random();
+        static bool hasArtifact = false;
 
         static void Main()
         {
+            SetupConsole();
+            ShowIntroduction();
+            Chapter1_PowerStation();
+        }
+
+        static void SetupConsole()
+        {
             Console.Title = "Электромонтажер-анимешник: Пробой реальности";
             Console.ForegroundColor = ConsoleColor.Cyan;
-            
-            ShowElectricIntro();
-            PowerStationEvent();
+            Console.CursorVisible = false;
         }
 
-        static void ShowElectricIntro()
+        static void ShowIntroduction()
         {
             Console.Clear();
-            Console.WriteLine("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
-            Console.WriteLine("  電撃の冒険が始まる！ (Начинается электроприключение!)");
-            Console.WriteLine("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆\n");
-            
-            Console.WriteLine($"Вы - {player.Name}, электромонтажник 5 разряда и хардкорный отаку.");
-            Console.WriteLine("Во время аварии на подстанции вы получили странные способности...\n");
-            
-            Console.WriteLine("Нажмите любую клавишу...");
-            Console.ReadKey();
+            PrintHeader("電撃の冒険が始まる！");
+            Console.WriteLine("Вы - Каито Ито, 28-летний электромонтажник и заядлый отаку.");
+            Console.WriteLine("В обычный рабочий день на подстанции №7 происходит нечто странное...\n");
+            WaitForInput();
         }
 
-        static void PowerStationEvent()
+        static void Chapter1_PowerStation()
         {
             Console.Clear();
-            Console.WriteLine("▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂");
-            Console.WriteLine("  ПОДСТАНЦИЯ №7. АВАРИЙНАЯ СИТУАЦИЯ");
-            Console.WriteLine("▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂\n");
-            
-            Console.WriteLine("Вы видите:");
+            PrintHeader("ПОДСТАНЦИЯ №7. УТРО");
+
+            Console.WriteLine("Перед вами:");
             Console.WriteLine("- Искрящийся трансформатор");
-            Console.WriteLine("- Странные руны на электрощите");
-            Console.WriteLine("- Своё отражение с аниме-глазами\n");
-            
-            Console.WriteLine("1. Попытаться починить стандартным методом (-3 жилы)");
-            Console.WriteLine("2. Произнести аниме-цитату (шанс 50/50)");
-            Console.WriteLine("3. Прикоснуться к рунам голыми руками");
-            Console.WriteLine("4. Сбежать с криком 'Yamete kudasai!'");
+            Console.WriteLine("- Странные символы на щитке");
+            Console.WriteLine("- Шепот из распределительной коробки\n");
+
+            Console.WriteLine("1. Провести стандартный ремонт (-3 жилы)");
+            Console.WriteLine("2. Произнести аниме-цитату");
+            Console.WriteLine("3. Исследовать странные символы");
+            Console.WriteLine("4. Проигнорировать и продолжить работу");
 
             switch (GetChoice(1, 4))
             {
@@ -69,137 +69,97 @@ namespace AnimeElectricianAdventure
                     StandardRepair();
                     break;
                 case 2:
-                    AnimeQuoteAttempt();
+                    UseAnimeQuote();
                     break;
                 case 3:
-                    TouchRunes();
+                    InvestigateSymbols();
                     break;
                 case 4:
-                    EscapeEnding();
+                    IgnoreAnomaly();
                     break;
             }
         }
 
         static void StandardRepair()
         {
-            player.Wires -= 3;
-            Console.WriteLine("\nВы починили оборудование, но...");
-            Console.WriteLine("Обычные методы больше не работают как раньше!");
+            hero.Wires -= 3;
+            Console.WriteLine("\nВы успешно починили оборудование.");
             
-            if (player.Wires <= 0)
+            if (random.Next(100) < 30)
             {
-                Console.WriteLine("\nУ вас закончились материалы!");
-                GameOver();
+                Console.WriteLine("Но что-то пошло не так...");
+                hero.AnimePower += 2;
+                Console.WriteLine("Ваша аниме-сила увеличилась!");
+            }
+
+            CheckResources();
+            Chapter2_City();
+        }
+
+        static void UseAnimeQuote()
+        {
+            if (hero.KnownQuotes.Count == 0)
+            {
+                Console.WriteLine("\nУ вас нет известных цитат!");
+                Chapter1_PowerStation();
                 return;
             }
 
-            Console.WriteLine("\n1. Идти в аниме-магазин за артефактами");
-            Console.WriteLine("2. Проверить другие подстанции");
+            string quote = hero.KnownQuotes[random.Next(hero.KnownQuotes.Count)];
+            Console.WriteLine($"\nВы кричите: \"{quote}\"");
 
-            if (GetChoice(1, 2) == 1)
-                VisitOtakuShop();
-            else
-                CheckOtherStations();
-        }
-
-        static void VisitOtakuShop()
-        {
-            Console.Clear();
-            Console.WriteLine("✧･ﾟ: *✧･ﾟ:*  АНИМЕ-МАГАЗИН 'OTAKU FLOW' *:･ﾟ✧*:･ﾟ✧");
-            Console.WriteLine("На полках:\n");
-            
-            Console.WriteLine("1. Изолента с рунами (+5 к силе, стоит 3 жилы)");
-            Console.WriteLine("2. Фигурка Мисаки из 'Toaru' (+2 AnimePower)");
-            Console.WriteLine("3. Манга 'Электромагия для чайников'");
-            Console.WriteLine("4. Уйти без покупок");
-
-            int choice = GetChoice(1, 4);
-
-            switch (choice)
+            if (random.Next(100) < 50 + hero.AnimePower)
             {
-                case 1 when player.Wires >= 3:
-                    player.Wires -= 3;
-                    player.AnimePower += 5;
-                    Console.WriteLine("\nТеперь вы чувствуете магию в проводах!");
-                    break;
-                case 2:
-                    player.AnimePower += 2;
-                    Console.WriteLine("\nФигурка излучает странную энергию...");
-                    break;
-                case 3:
-                    Console.WriteLine("\nВы узнали секрет: Ctrl+Alt+Рем-тян!");
-                    player.AnimeQuotes.Add("Я прочитал мангу до конца!");
-                    break;
-            }
-
-            UniversityRooftopEvent();
-        }
-
-        static void UniversityRooftopEvent()
-        {
-            Console.Clear();
-            Console.WriteLine("☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁");
-            Console.WriteLine("  КРЫША ТОКИЙСКОГО УНИВЕРСИТЕТА");
-            Console.WriteLine("☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁☁\n");
-            
-            Console.WriteLine("Перед финальным выбором:");
-            Console.WriteLine("- Город без электричества");
-            Console.WriteLine("- Порталы в другие миры");
-            Console.WriteLine("- Ваши новые способности\n");
-            
-            Console.WriteLine("1. Восстановить энергосистему (требует 10 Wires)");
-            Console.WriteLine($"2. Использовать Bankai Mode (требует 15 AnimePower)");
-            Console.WriteLine("3. Найти девушку-киборга из видений");
-
-            int choice = GetChoice(1, 3);
-
-            if (choice == 1 && player.Wires >= 10)
-            {
-                player.Wires -= 10;
-                LegendaryElectricianEnding();
-            }
-            else if (choice == 2 && player.AnimePower >= 15)
-            {
-                TrueOtakuEnding();
+                Console.WriteLine("Это сработало! Оборудование починено!");
+                hero.Reputation += 1;
             }
             else
             {
-                Console.WriteLine("\nНе хватает ресурсов! Но...");
-                CyberGhostEnding();
+                Console.WriteLine("Ничего не произошло...");
+                hero.Wires -= 2;
+            }
+
+            CheckResources();
+            Chapter2_City();
+        }
+
+        static void CheckResources()
+        {
+            if (hero.Wires <= 0)
+            {
+                Console.WriteLine("\nУ вас закончились материалы!");
+                GameOver();
             }
         }
 
-        static void LegendaryElectricianEnding()
+        static void Chapter2_City()
         {
-            Console.Clear();
-            Console.WriteLine("≪✦≫≪✦≫≪✦≫ ЛЕГЕНДАРНЫЙ ЭЛЕКТРИК ≪✦≫≪✦≫≪✦≫");
-            Console.WriteLine("Вы стабилизировали энергосистему города!");
-            Console.WriteLine("Теперь вас называют 'Богом проводов'");
-            ExitGame();
-        }
-
-        static void TrueOtakuEnding()
-        {
-            Console.Clear();
-            Console.WriteLine("(◕‿◕✿) ИСТИННЫЙ ОТАКУ (◕‿◕✿)");
-            Console.WriteLine("Bankai Mode активирован! Портал открыт!");
-            Console.WriteLine("Вы перенеслись в мир аниме навсегда!");
-            ExitGame();
+            // Продолжение сюжета...
         }
 
         static int GetChoice(int min, int max)
         {
             while (true)
             {
-                Console.Write($"\n[{player.Wires}🔌|{player.AnimePower}💬] Выбор: ");
+                Console.Write($"\n[{hero.Wires}🔌|{hero.AnimePower}✨] Выбор: ");
                 if (int.TryParse(Console.ReadLine(), out int choice) && choice >= min && choice <= max)
-                {
                     return choice;
-                }
-                Console.WriteLine($"Нужно число от {min} до {max}!");
+                
+                Console.WriteLine($"Введите число от {min} до {max}!");
             }
         }
 
-        // Другие методы концовок...
+        static void PrintHeader(string text)
+        {
+            Console.WriteLine(new string('═', text.Length + 4));
+            Console.WriteLine($"  {text}");
+            Console.WriteLine(new string('═', text.Length + 4) + "\n");
+        }
+
+        static void WaitForInput()
+        {
+            Console.WriteLine("\nНажмите любую клавишу...");
+            Console.ReadKey();
+        }
     }
 }
