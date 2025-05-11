@@ -79,7 +79,6 @@
 - Экспорт в PNG/SVG
 
 ### 8. [Windows Forms приложения](WindowsForms/README.md)
-[![Документация](https://img.shields.io/badge/📖_Документация-WinForms-9cf)](WindowsForms/README.md)
 
 **Стек технологий:**
 - Язык: C# (.NET Framework 4.8)
