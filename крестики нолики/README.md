@@ -1,8 +1,7 @@
 # Крестики-нолики 
 # Основы алгоритмизации и программирования (C#)
 
-**Студент:** Арушанян Лидия  
-**Группа:** ИПО-21-23  
+ 
 **Язык программирования:** C#  
 **Платформа:** .NET Framework 4.8  
 **Среда разработки:** Visual Studio  
@@ -11,7 +10,7 @@
 
 
 [![Открыть код калькулятора](https://img.shields.io/badge/Код-Крестики-нолики)](https://github.com/FallCracka/chalenge/blob/main/%D0%BA%D1%80%D0%B5%D1%81%D1%82%D0%B8%D0%BA%D0%B8%20%D0%BD%D0%BE%D0%BB%D0%B8%D0%BA%D0%B8/Program.cs)  
-[![← Вернуться к документации](https://img.shields.io/badge/←_Вернуться_к_README-документации-8A2BE2)](https://github.com/FallCracka/chalenge/blob/main/README.md)
+
 
 # Игра "Крестики-нолики"
 # Описание:
